@@ -28,6 +28,7 @@ public class Autocomplete {
         Set<String> suggestions = new HashSet<>();
 
         if (prefix.isEmpty()) {
+            // If prefix is empty, we provide all words by prepending each possible first character
             for (WordTreeNode wordTreeNode : dictionary.values()) {
                 wordTreeNode.populateSetOfSuggestions(wordTreeNode.getValue() + prefix, suggestions);
             }
@@ -35,8 +36,10 @@ public class Autocomplete {
             char firstChar = prefix.charAt(0);
 
             if (dictionary.containsKey(firstChar)) {
+                // Find node for the last letter of the string that has been given
                 String suffix = prefix.substring(1);
                 dictionary.get(firstChar).findNodeForWord(suffix)
+                        // Provide all possible next words
                         .ifPresent(wordTreeNode -> wordTreeNode.populateSetOfSuggestions(prefix, suggestions));
             }
         }
