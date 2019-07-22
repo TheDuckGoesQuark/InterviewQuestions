@@ -28,6 +28,7 @@ public class LongestUniqueSubstring {
                 char current = str.charAt(j);
                 seen.add(current);
                 if (seen.size() <= k) currentStreak++;
+                else break;
             }
 
             longestUniqueSubstring = longestUniqueSubstring < currentStreak ? currentStreak : longestUniqueSubstring;
