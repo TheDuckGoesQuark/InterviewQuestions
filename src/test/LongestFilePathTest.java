@@ -1,4 +1,4 @@
-package test.longestfilepath;
+package test;
 
 import main.longestfilepath.LongestFilePath;
 import org.junit.Test;
@@ -89,5 +89,12 @@ public class LongestFilePathTest {
     public void dirWithSubDirWithFileTest() {
         LongestFilePath lfp = new LongestFilePath("dir\n\tfile.txt\n\tsubdir1\n\t\totherfile.txt");
         assertEquals(26, lfp.findLongestFilePathLength());
+    }
+
+    @Test
+    public void givenExampleTest() {
+        String str = "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext";
+        LongestFilePath lfp = new LongestFilePath(str);
+        assertEquals(33, lfp.findLongestFilePathLength());
     }
 }
