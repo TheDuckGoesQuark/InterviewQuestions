@@ -58,12 +58,5 @@ public class OrderLogTest {
         assertEquals(10, orderLog.getLast(3));
         assertEquals(9, orderLog.getLast(4));
         assertEquals(8, orderLog.getLast(5));
-
-        System.out.println(orderLog.toString());
     }
-
-    @Test
-    public void getLast() {
-    }
-
 }
