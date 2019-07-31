@@ -11,6 +11,8 @@ package main.linkedlistintersection;
  */
 public class LinkedListIntersection {
 
-    
+    public static Node findIntersectingNode(Node headOfListA, Node headOfListB) {
+        return null;
+    }
 
 }
