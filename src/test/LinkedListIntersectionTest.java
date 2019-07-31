@@ -1,4 +1,4 @@
-package test.linkedlistintersection;
+package test;
 
 import main.linkedlistintersection.LinkedListBuilder;
 import main.linkedlistintersection.LinkedListIntersection;
@@ -19,7 +19,7 @@ public class LinkedListIntersectionTest {
     @Test
     public void findIntersectingNodeWhenSecondNodeIntersectsTest() {
         Node listA = new LinkedListBuilder().add(2).add(3).add(4).build();
-        Node listB = new LinkedListBuilder().add(1).add(2).add(3).build();
+        Node listB = new LinkedListBuilder().add(1).add(2).add(3).add(4).build();
 
         assertEquals(2, LinkedListIntersection.findIntersectingNode(listA, listB).getValue());
     }
@@ -29,7 +29,7 @@ public class LinkedListIntersectionTest {
         Node listA = new LinkedListBuilder().add(3).add(4).add(5).build();
         Node listB = new LinkedListBuilder().add(1).add(2).add(3).add(4).add(5).build();
 
-        assertEquals(2, LinkedListIntersection.findIntersectingNode(listA, listB).getValue());
+        assertEquals(3, LinkedListIntersection.findIntersectingNode(listA, listB).getValue());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class LinkedListIntersectionTest {
     @Test
     public void findIntersectingNodeWhenSecondNodeIntersectsWithPrecursorTest() {
         Node listA = new LinkedListBuilder().add(42).add(53).add(2).add(3).add(4).build();
-        Node listB = new LinkedListBuilder().add(52).add(1).add(2).add(3).build();
+        Node listB = new LinkedListBuilder().add(52).add(1).add(2).add(3).add(4).build();
 
         assertEquals(2, LinkedListIntersection.findIntersectingNode(listA, listB).getValue());
     }
@@ -52,6 +52,6 @@ public class LinkedListIntersectionTest {
         Node listA = new LinkedListBuilder().add(51).add(3).add(4).add(5).build();
         Node listB = new LinkedListBuilder().add(1).add(2).add(3).add(4).add(5).build();
 
-        assertEquals(2, LinkedListIntersection.findIntersectingNode(listA, listB).getValue());
+        assertEquals(3, LinkedListIntersection.findIntersectingNode(listA, listB).getValue());
     }
 }

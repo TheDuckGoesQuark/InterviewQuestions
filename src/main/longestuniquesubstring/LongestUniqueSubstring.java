@@ -37,11 +37,4 @@ public class LongestUniqueSubstring {
         return longestUniqueSubstring;
     }
 
-    /*
-        Simple (backtracking)
-        for each letter:
-           count how many characters until more than k unique characters are found
-           once >k characters found, backtrack to start character + 1
-     */
-
 }
