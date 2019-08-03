@@ -17,6 +17,15 @@ public class MinCostMapColouring {
         return recursiveCosts(houseColourCosts, 0, -1);
     }
 
+    /**
+     * Get minimum cost for all subsequent rows and return minimum cost for each of them if the given column is not
+     * allowed to be used.
+     *
+     * @param houseColourCosts   matrix of n houses by k colours
+     * @param rowIndex           current row of matrix to consider
+     * @param disallowedColIndex colour that cannot be used since it was used by recursive parent (-1 if first row)
+     * @return minimum cost
+     */
     private static int recursiveCosts(int[][] houseColourCosts, int rowIndex, int disallowedColIndex) {
         if (rowIndex == houseColourCosts.length) return 0;
 
