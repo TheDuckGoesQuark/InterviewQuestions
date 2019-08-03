@@ -9,8 +9,27 @@ package main.mapcolouring;
  */
 public class MinCostMapColouring {
 
+    /**
+     * Simple:
+     * Try each permutation, return cheapest
+     */
     public static int getMinimumCost(int[][] houseColourCosts) {
-        return 0;
+        return recursiveCosts(houseColourCosts, 0, -1);
     }
 
+    private static int recursiveCosts(int[][] houseColourCosts, int rowIndex, int disallowedColIndex) {
+        if (rowIndex == houseColourCosts.length) return 0;
+
+        int currentMin = Integer.MAX_VALUE;
+        for (int i = 0; i < houseColourCosts[0].length; i++) {
+            if (i == disallowedColIndex) continue;
+
+            int colCost = houseColourCosts[rowIndex][i];
+
+            int cost = colCost + recursiveCosts(houseColourCosts, rowIndex + 1, i);
+            if (cost < currentMin) currentMin = cost;
+        }
+
+        return currentMin;
+    }
 }

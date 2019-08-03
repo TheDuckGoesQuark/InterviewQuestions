@@ -62,8 +62,12 @@ public class MinCostMapColouringTest {
 
     @Test
     public void getMinimumCostFourHousesSamePrice() {
-        int[][] input = new int[][]{{1, 2}, {1, 2}, {1, 2}, {1, 2}};
-        int expected = 7;
+        int[][] input = new int[][]{
+                {1, 2},
+                {1, 2},
+                {1, 2},
+                {1, 2}};
+        int expected = 6;
         int actual = getMinimumCost(input);
 
         assertEquals(expected, actual);
@@ -71,8 +75,12 @@ public class MinCostMapColouringTest {
 
     @Test
     public void getMinimumCostFourHousesThreeColoursSamePrice() {
-        int[][] input = new int[][]{{1, 2, 1}, {1, 2, 1}, {1, 2, 1}, {1, 2, 1}};
-        int expected = 5;
+        int[][] input = new int[][]{
+                {1, 2, 1},
+                {1, 2, 1},
+                {1, 2, 1},
+                {1, 2, 1}};
+        int expected = 4;
         int actual = getMinimumCost(input);
 
         assertEquals(expected, actual);
