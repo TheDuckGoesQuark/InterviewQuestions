@@ -44,10 +44,6 @@ public class FlightItinerary {
     }
 
     /**
-     * yul, ord, sfo, hnl, ask
-     */
-
-    /**
      * @param flights     origin-destination pairs of airport names that can still be used
      * @param usedFlights flights used so far in itinerary
      * @param origin      airport that we must start from
