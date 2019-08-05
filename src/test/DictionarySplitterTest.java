@@ -4,6 +4,7 @@ import main.dictionarysplitter.DictionarySplitter;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,9 @@ public class DictionarySplitterTest {
         String input = "thequickbrownfox";
         String[] output = new String[]{"the", "quick", "brown", "fox"};
 
-        assertArrayEquals(output, DictionarySplitter.reconstructSentence(input, words));
+        Optional<String[]> result = DictionarySplitter.reconstructSentence(input, words);
+        assertTrue(result.isPresent());
+        assertArrayEquals(output, result.get());
     }
 
     @Test
@@ -29,13 +32,16 @@ public class DictionarySplitterTest {
         Set<String> words = arrToSet(new String[]{"bed", "bath", "bedbath", "and", "beyond"});
         String input = "bedbathandbeyond";
 
+        Optional<String[]> result = DictionarySplitter.reconstructSentence(input, words);
+        assertTrue(result.isPresent());
+
         // Multiple allowed
         try {
             String[] output = new String[]{"bed", "bath", "and", "beyond"};
-            assertArrayEquals(output, DictionarySplitter.reconstructSentence(input, words));
+            assertArrayEquals(output, result.get());
         } catch (AssertionError e) {
             String[] output = new String[]{"bedbath", "and", "beyond"};
-            assertArrayEquals(output, DictionarySplitter.reconstructSentence(input, words));
+            assertArrayEquals(output, result.get());
         }
     }
 }
