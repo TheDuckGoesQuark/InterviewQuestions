@@ -28,6 +28,17 @@ public class DictionarySplitterTest {
     }
 
     @Test
+    public void reconstructSentenceComplex() {
+        Set<String> words = arrToSet(new String[]{"i", "am", "reading", "read", "ding", "brotherhood", "bro", "broth", "there"});
+        String input = "iamreadingaboutbrotherhood";
+        String[] output = new String[]{"i", "am", "reading", "about", "brotherhood"};
+
+        Optional<String[]> result = DictionarySplitter.reconstructSentence(input, words);
+        assertTrue(result.isPresent());
+        assertArrayEquals(output, result.get());
+    }
+
+    @Test
     public void reconstructSentenceMultipleSolutions() {
         Set<String> words = arrToSet(new String[]{"bed", "bath", "bedbath", "and", "beyond"});
         String input = "bedbathandbeyond";
