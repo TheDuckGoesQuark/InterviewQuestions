@@ -1,5 +1,6 @@
 package main.dictionarysplitter;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -19,10 +20,24 @@ import java.util.Set;
  * and the string "bedbathandbeyond",
  * return either ['bed', 'bath', 'and', 'beyond]
  * or ['bedbath', 'and', 'beyond'].
+ * <p>
+ * Assuming answers to questions given here
+ * https://thenoisychannel.com/2011/08/08/retiring-a-great-interview-problem
  */
 public class DictionarySplitter {
 
-    public static String[] reconstructSentence(String str, Set<String> dictionary) {
+    /**
+     * Splits the given string into words found in the given dictionary to restore original sentence.
+     *
+     * If no solution, returns empty.
+     * @param str
+     * @param dictionary
+     * @return
+     */
+    public static Optional<String[]> reconstructSentence(String str, Set<String> dictionary) {
+        /*
+        narrow down matches
+         */
         return null;
     }
 
