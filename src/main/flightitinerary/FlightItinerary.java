@@ -29,7 +29,6 @@ public class FlightItinerary {
     public static Optional<String[]> produceItinerary(String[][] flights, String homeAirport) {
         Optional<Stack<String[]>> result = recursivelyFindItinerary(new LinkedList<>(Arrays.asList(flights)), new Stack<>(), homeAirport);
 
-        // TODO add dynamic programming
         if (result.isEmpty()) return Optional.empty();
 
         Stack<String[]> flightStack = result.get();
