@@ -2,6 +2,7 @@ package main.dictionarysplitter;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * Given a dictionary of words and a string made up of those words (no spaces),
@@ -37,9 +38,11 @@ public class DictionarySplitter {
      * @return original sentence as string array, or empty if no solution
      */
     public static Optional<String[]> reconstructSentence(String str, Set<String> dictionary) {
-        /*
-        Preprocess dictionary into autocomplete tree
+        final Stack<Integer> splitPoints = new Stack<>();
 
+        int currentIndexInString = 0;
+        final StringBuilder currentWord = new StringBuilder();
+        /*
         Traverse tree for first match in str, add word to stack, recursively call for rest of string
 
         Return if whole string is consumed
@@ -47,7 +50,17 @@ public class DictionarySplitter {
 
         Return empty if nothing found
          */
-        return null;
+        return Optional.empty();
+    }
+
+    private static Optional<String[]> reconstructSentenceRecursively(String str, Set<String> dictionary, Stack<Integer> splitPoints, int currentIndex) {
+        while (currentIndexInString < str.length()) {
+            currentWord.append(str.charAt(currentIndexInString));
+
+            if (dictionary.contains(currentWord.toString()))
+                splitPoints.push()
+        }
+
     }
 
 }
