@@ -19,15 +19,11 @@ public class OverlappingIntervals {
      */
     public static int getMinNumberOfRoomsRequired(int[][] startFinishPairs) {
         // Create interval instances and sort by start time O(n log(n))
-        Interval[] intervals = (Interval[]) Arrays.stream(startFinishPairs)
+        Interval[] intervals = Arrays.stream(startFinishPairs)
                 .map(Interval::new)
                 .sorted(Comparator.comparingInt(Interval::getStartTime))
-                .toArray();
+                .toArray(Interval[]::new);
 
-        // For each interval, increment conflict count for that interval and the conflicting intervals
-        // Since sorted by start time, we only need to check ahead until the this.endtime < next.starttime
-        // Best case: O(n) (only need to check ahead by one for each, so 2n, no conflicts)
-        // Worst case O(n^2) (need to check entire rest of list for each, so (n + n-1 + ... 1) = O(n^2)
         int maxConflicts = 0;
         for (int i = 0; i < intervals.length; i++) {
             Interval current = intervals[i];
@@ -38,7 +34,6 @@ public class OverlappingIntervals {
                 if (comparedTo.getStartTime() >= current.getEndTime())
                     break;
                 else {
-                    current.incrementConflictingCount();
                     comparedTo.incrementConflictingCount();
                 }
             }

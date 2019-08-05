@@ -2,8 +2,8 @@ package main.overlappingintervals;
 
 class Interval {
 
-    private int[] interval;
-    private int conflictingCount = 0;
+    private final int[] interval;
+    private int conflictingCount;
 
     Interval(int[] interval) {
         this.interval = interval;
@@ -24,5 +24,4 @@ class Interval {
     void incrementConflictingCount() {
         conflictingCount++;
     }
-
 }
