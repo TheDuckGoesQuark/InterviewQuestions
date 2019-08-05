@@ -28,15 +28,24 @@ public class DictionarySplitter {
 
     /**
      * Splits the given string into words found in the given dictionary to restore original sentence.
-     *
+     * <p>
      * If no solution, returns empty.
-     * @param str
-     * @param dictionary
-     * @return
+     *
+     * @param str        original sentence with spaces between words removed
+     * @param dictionary dictionary of possible words that could be in the string.
+     *                   Assumed large, but small enough to fit in memory
+     * @return original sentence as string array, or empty if no solution
      */
     public static Optional<String[]> reconstructSentence(String str, Set<String> dictionary) {
         /*
-        narrow down matches
+        Preprocess dictionary into autocomplete tree
+
+        Traverse tree for first match in str, add word to stack, recursively call for rest of string
+
+        Return if whole string is consumed
+        Else, backtrack
+
+        Return empty if nothing found
          */
         return null;
     }
