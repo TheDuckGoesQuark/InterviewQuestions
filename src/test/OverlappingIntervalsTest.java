@@ -16,6 +16,14 @@ public class OverlappingIntervalsTest {
     }
 
     @Test
+    public void getMinNumberOfRoomsRequiredTestOneConflictTwo() {
+        int[][] input = new int[][]{{0, 30}, {5, 10}, {15, 20}};
+        int expected = 2;
+
+        assertEquals(expected, OverlappingIntervals.getMinNumberOfRoomsRequired(input));
+    }
+
+    @Test
     public void getMinNumberOfRoomsRequiredTestNoConflicts() {
         int[][] input = new int[][]{{0, 25}, {25, 50}, {60, 150}};
         int expected = 1;
