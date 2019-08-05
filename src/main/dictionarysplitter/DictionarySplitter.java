@@ -1,5 +1,6 @@
 package main.dictionarysplitter;
 
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
@@ -38,29 +39,47 @@ public class DictionarySplitter {
      * @return original sentence as string array, or empty if no solution
      */
     public static Optional<String[]> reconstructSentence(String str, Set<String> dictionary) {
-        final Stack<Integer> splitPoints = new Stack<>();
+        return reconstructSentenceRecursively(str, dictionary, new LinkedList<>(), 0);
+    }
 
-        int currentIndexInString = 0;
+    private static Optional<String[]> reconstructSentenceRecursively(String str, Set<String> dictionary, LinkedList<Integer> splitPoints, int currentIndex) {
+        if (currentIndex == str.length()) {
+            return Optional.of(splitStringAtIndices(str, splitPoints));
+        }
+
         final StringBuilder currentWord = new StringBuilder();
-        /*
-        Traverse tree for first match in str, add word to stack, recursively call for rest of string
+        while (currentIndex < str.length()) {
+            currentWord.append(str.charAt(currentIndex));
 
-        Return if whole string is consumed
-        Else, backtrack
+            if (dictionary.contains(currentWord.toString())) {
+                splitPoints.addLast(currentIndex + 1);
+                Optional<String[]> branchResult =
+                        reconstructSentenceRecursively(str, dictionary, splitPoints, currentIndex + 1);
 
-        Return empty if nothing found
-         */
+                if (branchResult.isPresent()) {
+                    return branchResult;
+                } else {
+                    splitPoints.removeLast();
+                }
+            }
+
+            currentIndex++;
+        }
+
         return Optional.empty();
     }
 
-    private static Optional<String[]> reconstructSentenceRecursively(String str, Set<String> dictionary, Stack<Integer> splitPoints, int currentIndex) {
-        while (currentIndexInString < str.length()) {
-            currentWord.append(str.charAt(currentIndexInString));
+    private static String[] splitStringAtIndices(String str, LinkedList<Integer> splitPoints) {
+        final String[] arr = new String[splitPoints.size()];
 
-            if (dictionary.contains(currentWord.toString()))
-                splitPoints.push()
+        int prev = 0, next;
+        for (int i = 0; splitPoints.size() > 0; i++) {
+            next = splitPoints.removeFirst();
+            arr[i] = str.substring(prev, next);
+            prev = next;
         }
 
+        return arr;
     }
 
 }
