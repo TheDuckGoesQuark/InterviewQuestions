@@ -39,7 +39,7 @@ public class DictionarySplitter {
         return reconstructSentenceRecursively(str, dictionary, new LinkedList<>(), 0);
     }
 
-    // TODO
+    // TODO add dynamic programming optimisation
     private static Optional<String[]> reconstructSentenceRecursively(String str, Set<String> dictionary, LinkedList<Integer> splitPoints, int currentIndex) {
         if (currentIndex == str.length()) {
             return Optional.of(splitStringAtIndices(str, splitPoints));
