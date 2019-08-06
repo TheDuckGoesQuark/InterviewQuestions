@@ -30,7 +30,7 @@ public class MaxtrixMinPath {
     private static final boolean WALL = true;
 
     /**
-     * Greedy depth first search
+     * Greedy depth first search (greedy doesn't really help here, but would help if we want a likely shortest path first)
      *
      * @param board       board describing possible path where true represents walls and false represents path
      * @param startCoords position currently in
