@@ -1,6 +1,7 @@
 package test;
 
 import main.matrixminpath.MaxtrixMinPath;
+import main.matrixminpath.Point;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -20,8 +21,8 @@ public class MaxtrixMinPathTest {
                 {f, f, f, f},
                 {f, f, f, f}
         };
-        final int[] start = {3, 0};
-        final int[] end = {0, 0};
+        final Point start = new Point(3, 0);
+        final Point end = new Point(0, 0);
 
         final Optional<Integer> result = MaxtrixMinPath.getMinPath(board, start, end);
         assertTrue(result.isPresent());
@@ -39,8 +40,8 @@ public class MaxtrixMinPathTest {
                 {f, f, f, f}
         };
 
-        final int[] start = {3, 0};
-        final int[] end = {0, 0};
+        final Point start = new Point(3, 0);
+        final Point end = new Point(0, 0);
 
         final Optional<Integer> result = MaxtrixMinPath.getMinPath(board, start, end);
         assertFalse(result.isPresent());
@@ -55,8 +56,8 @@ public class MaxtrixMinPathTest {
                 {f, f, f, f}
         };
 
-        final int[] start = {0, 0};
-        final int[] end = {3, 3};
+        final Point start = new Point(0, 0);
+        final Point end = new Point(3, 3);
 
         final Optional<Integer> result = MaxtrixMinPath.getMinPath(board, start, end);
         assertTrue(result.isPresent());
@@ -74,8 +75,8 @@ public class MaxtrixMinPathTest {
                 {f, f, f, f}
         };
 
-        final int[] start = {0, 0};
-        final int[] end = {3, 3};
+        final Point start = new Point(0, 0);
+        final Point end = new Point(3, 3);
 
         final Optional<Integer> result = MaxtrixMinPath.getMinPath(board, start, end);
         assertFalse(result.isPresent());
