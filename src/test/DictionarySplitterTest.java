@@ -55,4 +55,5 @@ public class DictionarySplitterTest {
             assertArrayEquals(output, result.get());
         }
     }
+
 }
