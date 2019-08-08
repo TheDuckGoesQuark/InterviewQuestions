@@ -1,5 +1,7 @@
 package main.regeximpl;
 
+import java.util.List;
+
 /**
  * Implement regular expression matching with the following special characters:
  * <p>
@@ -19,14 +21,25 @@ package main.regeximpl;
  * The same regular expression on the string "chats" should return false.
  */
 public class Regex {
+
     private static final char DOT = '.';
     private static final char ASTERISK = '*';
 
+    private final String pattern;
+    private final List<Regex> childPatterns;
+
     public Regex(String pattern) {
+        this.pattern = pattern;
 
     }
 
     public boolean matches(String str) {
+        int currentIndex = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+
+        }
+
         return false;
     }
 }
