@@ -1,5 +1,7 @@
 package main.lockingbinarytree;
 
+import main.treesolver.Node;
+
 /**
  * Implement locking in a binary tree.
  * <p>
@@ -8,7 +10,7 @@ package main.lockingbinarytree;
  * <p>
  * Design a binary tree node class with the following methods:
  * <p>
- * is_locked, which returns whether the node is locked
+ * isLocked, which returns whether the node is locked
  * <p>
  * lock, which attempts to lock the node.
  * If it cannot be locked, then it should return false.
@@ -23,10 +25,46 @@ package main.lockingbinarytree;
  * Each method should run in O(h), where h is the height of the tree.
  */
 public class LockingBinaryTree {
+
+    private boolean locked;
+
+    private LockingBinaryTree parent;
+    private LockingBinaryTree left;
+    private LockingBinaryTree right;
+
+    public LockingBinaryTree() {
+    }
+
+    public LockingBinaryTree getLeft() {
+        return left;
+    }
+
+    public void setLeft(LockingBinaryTree left) {
+        this.left = left;
+        left.setParent(this);
+    }
+
+    public LockingBinaryTree getRight() {
+        return right;
+    }
+
+    public void setRight(LockingBinaryTree right) {
+        this.right = right;
+        right.setParent(this);
+    }
+
+    public LockingBinaryTree getParent() {
+        return parent;
+    }
+
+    public void setParent(LockingBinaryTree parent) {
+        this.parent = parent;
+    }
+
     /**
      * @return true if the node is locked
      */
-    boolean is_locked() {
+    public boolean isLocked() {
         return false;
     }
 
@@ -35,7 +73,7 @@ public class LockingBinaryTree {
      *
      * @return false if node cannot be locked, true otherwise
      */
-    boolean lock() {
+    public boolean lock() {
         return false;
     }
 
@@ -44,7 +82,7 @@ public class LockingBinaryTree {
      *
      * @return false if unable to unlock. True otherwise.
      */
-    boolean unlock() {
+    public boolean unlock() {
         return false;
     }
 }
