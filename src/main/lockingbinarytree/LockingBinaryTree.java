@@ -57,7 +57,7 @@ public class LockingBinaryTree {
         return parent;
     }
 
-    public void setParent(LockingBinaryTree parent) {
+    private void setParent(LockingBinaryTree parent) {
         this.parent = parent;
     }
 
@@ -65,24 +65,53 @@ public class LockingBinaryTree {
      * @return true if the node is locked
      */
     public boolean isLocked() {
-        return false;
+        return locked;
     }
 
     /**
      * Attempts to lock the node.
+     * Nodes can only be locked if all ancestors and descendants are unlocked
      *
      * @return false if node cannot be locked, true otherwise
      */
     public boolean lock() {
-        return false;
+        if (locked || checkDescendantsLocked() || checkAncestorsLocked()) return false;
+        else {
+            locked = true;
+            return true;
+        }
+    }
+
+    /**
+     * @return true any ancestors are locked
+     */
+    private boolean checkAncestorsLocked() {
+        if (parent == null) return false;
+        else return parent.isLocked() // short circuiting avoids further parent check
+                || parent.checkAncestorsLocked();
+    }
+
+    /**
+     * @return true if any descendants are locked
+     */
+    private boolean checkDescendantsLocked() {
+        boolean leftLocked = left != null && (left.isLocked() || left.checkDescendantsLocked());
+        boolean rightLocked = right != null && (right.isLocked() || right.checkDescendantsLocked());
+
+        return leftLocked || rightLocked;
     }
 
     /**
      * Attempts to unlock the node
+     * Nodes can only be unlocked if already locked
      *
      * @return false if unable to unlock. True otherwise.
      */
     public boolean unlock() {
-        return false;
+        if (!locked) return false;
+        else {
+            locked = false;
+            return true;
+        }
     }
 }
