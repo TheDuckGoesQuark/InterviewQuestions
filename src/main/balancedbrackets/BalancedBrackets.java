@@ -1,5 +1,7 @@
 package main.balancedbrackets;
 
+import java.util.Stack;
+
 /**
  * Given a string of round, curly, and square open and closing brackets,
  * return whether the brackets are balanced (well-formed).
@@ -11,7 +13,35 @@ package main.balancedbrackets;
 public class BalancedBrackets {
 
     public static boolean bracketsAreBalanced(String str) {
-        return false;
+        final Stack<Character> bracketStack = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char current = str.charAt(i);
+
+            switch (current) {
+                case '(':
+                case '{':
+                case '[':
+                    bracketStack.push(current);
+                    break;
+                case ')':
+                    if (bracketStack.peek() == '(') bracketStack.pop();
+                    else return false;
+                    break;
+                case '}':
+                    if (bracketStack.peek() == '{') bracketStack.pop();
+                    else return false;
+                    break;
+                case ']':
+                    if (bracketStack.peek() == '[') bracketStack.pop();
+                    else return false;
+                    break;
+                default:
+                    return false;
+            }
+        }
+
+        return bracketStack.isEmpty();
     }
 
 }
