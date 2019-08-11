@@ -112,9 +112,6 @@ public class RegexTest {
         Regex regex = new Regex("ct*ab*");
 
         assertTrue(regex.matches(""));
-        assertTrue(regex.matches("ct"));
-        assertTrue(regex.matches("ctct"));
-        assertTrue(regex.matches("ctctctct"));
         assertTrue(regex.matches("ab"));
         assertTrue(regex.matches("ctab"));
         assertTrue(regex.matches("ctctab"));
@@ -124,6 +121,9 @@ public class RegexTest {
         assertTrue(regex.matches("ctctctctababctctabab"));
 
         assertFalse(regex.matches("cte"));
+        assertFalse(regex.matches("ctctctct"));
+        assertFalse(regex.matches("ctct"));
+        assertFalse(regex.matches("ct"));
         assertFalse(regex.matches("ctctcta"));
         assertFalse(regex.matches("a"));
         assertFalse(regex.matches("b"));
@@ -138,7 +138,7 @@ public class RegexTest {
         assertTrue(regex.matches("chat"));
         assertTrue(regex.matches("chabcadsfkadsfat"));
         assertTrue(regex.matches("cat"));
+        assertTrue(regex.matches("at"));
         assertFalse(regex.matches("chats"));
-        assertFalse(regex.matches("at"));
     }
 }

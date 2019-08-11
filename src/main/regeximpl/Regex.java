@@ -1,6 +1,6 @@
 package main.regeximpl;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Implement regular expression matching with the following special characters:
@@ -22,22 +22,53 @@ import java.util.List;
  */
 public class Regex {
 
-    private static final char DOT = '.';
-    private static final char ASTERISK = '*';
+    public static final char DOT = '.';
+    public static final char ASTERISK = '*';
 
-    private final String pattern;
-    private final List<Regex> childPatterns;
+    private final State initialState;
 
     public Regex(String pattern) {
-        this.pattern = pattern;
+        this.initialState = parsePattern(pattern);
+    }
 
+    private State parsePattern(String pattern) {
+        State initialState = new State();
+
+        State prevState = initialState;
+        for (int i = 0; i < pattern.length(); i++) {
+            char current = pattern.charAt(i);
+            switch (current) {
+                case ASTERISK:
+                    // if asterisk we copy possible transitions of the initial state and become the initial state
+                    prevState.copyTransitions(initialState);
+                    initialState = prevState;
+                    break;
+                case DOT:
+                default:
+                    State nextState = new State();
+                    prevState.addTransition(current, nextState);
+                    prevState = nextState;
+                    break;
+            }
+        }
+
+        prevState.setAccepting(true);
+        return initialState;
     }
 
     public boolean matches(String str) {
-        int currentIndex = 0;
+        return recursivelyMatch(str, this.initialState, 0);
+    }
 
-        for (int i = 0; i < str.length(); i++) {
+    private boolean recursivelyMatch(String str, State currentState, int currentIndex) {
+        if (currentIndex == str.length()) {
+            return currentState.isAccepting();
+        }
 
+        char current = str.charAt(currentIndex);
+
+        for (State state : currentState.getNextStates(current)) {
+            if (recursivelyMatch(str, state, currentIndex + 1)) return true;
         }
 
         return false;
