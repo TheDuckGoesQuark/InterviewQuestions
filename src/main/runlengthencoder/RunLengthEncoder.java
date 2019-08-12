@@ -12,7 +12,24 @@ package main.runlengthencoder;
 public class RunLengthEncoder {
 
     public static String decode(String str) {
-        return null;
+        final StringBuilder sb = new StringBuilder();
+
+        int i = 0;
+        while (i < str.length()) {
+            int startingIndex = i;
+            while (Character.isDigit(str.charAt(i))) i++;
+
+            int numRepeats = Integer.parseInt(str.substring(startingIndex, i));
+            char repeatingChar = str.charAt(i);
+
+            for (int j = 0; j < numRepeats; j++) {
+                sb.append(repeatingChar);
+            }
+
+            i++;
+        }
+
+        return sb.toString();
     }
 
     public static String encode(String str) {
