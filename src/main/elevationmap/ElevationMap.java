@@ -19,7 +19,25 @@ package main.elevationmap;
 public class ElevationMap {
 
     public static int getVolumeContainable(int[] elevationMap) {
-        return 0;
+        int units = 0;
+
+        for (int i = 1; i < elevationMap.length; i++) {
+            int indexOfBasinStart = i - 1;
+
+            while (i < elevationMap.length && elevationMap[i] < elevationMap[i - 1])
+                i++; // skip until altitude starts increasing
+
+            while (i < elevationMap.length && elevationMap[i] > elevationMap[i - 1])
+                i++; // skip until altitude stops increasing
+
+            int height = Integer.min(elevationMap[indexOfBasinStart], elevationMap[i - 1]);
+            for (int j = indexOfBasinStart; j < i; j++) {
+                if (elevationMap[j] <= height)
+                    units += (height - elevationMap[j]);
+            }
+        }
+
+        return units;
     }
 
 }
