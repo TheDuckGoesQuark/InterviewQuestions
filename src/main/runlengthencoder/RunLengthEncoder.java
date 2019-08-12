@@ -33,7 +33,22 @@ public class RunLengthEncoder {
     }
 
     public static String encode(String str) {
-        return null;
+        final StringBuilder sb = new StringBuilder();
+
+        int i = 0;
+        while (i < str.length()) {
+            int startingIndex = i;
+            char current = str.charAt(startingIndex);
+
+            while (i < str.length() && str.charAt(i) == current) i++;
+
+            int numRepeats = i - startingIndex;
+
+            sb.append(numRepeats);
+            sb.append(current);
+        }
+
+        return sb.toString();
     }
 
 }
