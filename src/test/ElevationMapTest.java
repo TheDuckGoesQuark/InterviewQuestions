@@ -20,5 +20,8 @@ public class ElevationMapTest {
         assertEquals(4, ElevationMap.getVolumeContainable(new int[]{5, 4, 3, 4, 5}));
         assertEquals(8, ElevationMap.getVolumeContainable(new int[]{5, 4, 3, 4, 5, 4, 3, 4, 5}));
         assertEquals(1, ElevationMap.getVolumeContainable(new int[]{5, 4, 4, 3, 4, 4}));
+
+        // TODO this case isn't handled
+        assertEquals(13, ElevationMap.getVolumeContainable(new int[]{5, 0, 2, 0, 5}));
     }
 }
