@@ -19,7 +19,15 @@ package main.streammedian;
 public class StreamMedian {
 
     public static double[] getRollingMedian(double[] sequence) {
-        return null;
+        final double[] result = new double[sequence.length];
+        final Heap<Double> lowHeap = new Heap<>(true);
+        final Heap<Double> highHeap = new Heap<>(false);
+
+        for (int i = 0; i < sequence.length; i++) {
+
+        }
+
+        return result;
     }
 
 }
