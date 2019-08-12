@@ -15,20 +15,20 @@ public class Heap<T extends Comparable<? super T>> {
 
     public void add(T element) {
         values.add(element);
-        heapify(values.size() - 1);
+        heapifyUpwards(values.size() - 1);
     }
 
-    private void heapify(int lastAddedIndex) {
+    private void heapifyUpwards(int lastAddedIndex) {
         // check parent exists
         if (lastAddedIndex == 0) return;
 
         // get parent
         int parentIndex = (lastAddedIndex - 1) / 2;
 
-        // swap is swap
+        // swap if should swap
         if (shouldSwap(lastAddedIndex, parentIndex)) {
             swap(lastAddedIndex, parentIndex);
-            heapify(parentIndex);
+            heapifyUpwards(parentIndex);
         }
     }
 
@@ -55,5 +55,24 @@ public class Heap<T extends Comparable<? super T>> {
 
     public int size() {
         return values.size();
+    }
+
+    public void removeRoot() {
+        T last = values.remove(values.size() - 1);
+        values.set(0, last);
+        heapifyDownwards(0);
+    }
+
+    private void heapifyDownwards(int index) {
+        int leftChildIndex = index * 2;
+        int rightChildIndex = leftChildIndex + 1;
+
+        if (leftChildIndex < values.size() && shouldSwap(leftChildIndex, index)) {
+            swap(index, leftChildIndex);
+            heapifyDownwards(leftChildIndex);
+        } else if (rightChildIndex < values.size() && shouldSwap(rightChildIndex, index)) {
+            swap(index, rightChildIndex);
+            heapifyDownwards(rightChildIndex);
+        }
     }
 }

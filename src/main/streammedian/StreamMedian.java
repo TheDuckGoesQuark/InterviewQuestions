@@ -24,7 +24,21 @@ public class StreamMedian {
         final Heap<Double> highHeap = new Heap<>(false);
 
         for (int i = 0; i < sequence.length; i++) {
+            lowHeap.add(sequence[i]);
 
+            // maintain that low heap must be at most one bigger than high heap
+            if (lowHeap.size() > highHeap.size() + 1) {
+                highHeap.add(lowHeap.getRoot());
+                lowHeap.removeRoot();
+            }
+
+            if (i % 2 == 0) {
+                // odd number in list, can take exact middle
+                result[i] = lowHeap.getRoot();
+            } else {
+                // even number in list, take average of both
+                result[i] = (lowHeap.getRoot() + highHeap.getRoot()) / (2);
+            }
         }
 
         return result;
