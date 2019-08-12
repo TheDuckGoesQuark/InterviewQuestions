@@ -27,6 +27,7 @@ public class StreamMedian {
             lowHeap.add(sequence[i]);
 
             // maintain that low heap must be at most one bigger than high heap
+            // TODO fix highest value is add to lowHeap when it should be added to high heap...
             if (lowHeap.size() > highHeap.size() + 1) {
                 highHeap.add(lowHeap.getRoot());
                 lowHeap.removeRoot();

@@ -42,11 +42,8 @@ public class Heap<T extends Comparable<? super T>> {
         T parent = values.get(parentIndex);
         T child = values.get(childIndex);
 
-        if (maxHeap && (child.compareTo(parent) > 0)) {
-            return true;
-        } else {
-            return child.compareTo(parent) < 0;
-        }
+        if (maxHeap) return child.compareTo(parent) > 0;
+        else return child.compareTo(parent) < 0;
     }
 
     public T getRoot() {
