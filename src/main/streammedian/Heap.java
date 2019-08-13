@@ -3,7 +3,7 @@ package main.streammedian;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Heap<T extends Comparable<? super T>> {
+public class Heap<T extends Number & Comparable<T>> {
 
     private final boolean maxHeap;
     private List<T> values;
@@ -11,6 +11,11 @@ public class Heap<T extends Comparable<? super T>> {
     public Heap(boolean maxHeap) {
         this.maxHeap = maxHeap;
         this.values = new ArrayList<>();
+    }
+
+    public void setRoot(T element) {
+        values.set(0, element);
+        heapifyDownwards(0);
     }
 
     public void add(T element) {
@@ -61,15 +66,29 @@ public class Heap<T extends Comparable<? super T>> {
     }
 
     private void heapifyDownwards(int index) {
-        int leftChildIndex = index * 2;
+        int leftChildIndex = index * 2 + 1;
         int rightChildIndex = leftChildIndex + 1;
 
-        if (leftChildIndex < values.size() && shouldSwap(leftChildIndex, index)) {
-            swap(index, leftChildIndex);
-            heapifyDownwards(leftChildIndex);
-        } else if (rightChildIndex < values.size() && shouldSwap(rightChildIndex, index)) {
-            swap(index, rightChildIndex);
-            heapifyDownwards(rightChildIndex);
+        if (leftChildIndex < values.size()) {
+            if (rightChildIndex < values.size()) {
+                int childToSwapWithIndex = getChildToSwapWith(leftChildIndex, rightChildIndex);
+                swap(index, childToSwapWithIndex);
+                heapifyDownwards(childToSwapWithIndex);
+            } else if (shouldSwap(leftChildIndex, index)){
+                swap(leftChildIndex, index);
+                heapifyDownwards(leftChildIndex);
+            }
+        }
+    }
+
+    private int getChildToSwapWith(int leftChildIndex, int rightChildIndex) {
+        final T leftChild = values.get(leftChildIndex);
+        final T rightChild = values.get(rightChildIndex);
+
+        if (maxHeap) {
+            return leftChild.compareTo(rightChild) > 0 ? leftChildIndex : rightChildIndex;
+        } else {
+            return leftChild.compareTo(rightChild) < 0 ? leftChildIndex : rightChildIndex;
         }
     }
 }
