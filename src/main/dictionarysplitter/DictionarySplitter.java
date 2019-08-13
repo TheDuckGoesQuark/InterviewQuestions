@@ -36,48 +36,17 @@ public class DictionarySplitter {
      * @return original sentence as string array, or empty if no solution
      */
     public static Optional<String[]> reconstructSentence(String str, Set<String> dictionary) {
-        return reconstructSentenceRecursively(str, dictionary, new LinkedList<>(), 0);
+        final Stack<Integer> splitPoints = new Stack<>();
+        boolean canSplit = determineSplitPoints(str, splitPoints, dictionary, new HashSet<>(), 0);
+
+        if (!canSplit) return Optional.empty();
+        else return Optional.ofNullable(splitSentence(str, splitPoints));
     }
 
-    // TODO add dynamic programming optimisation
-    private static Optional<String[]> reconstructSentenceRecursively(String str, Set<String> dictionary, LinkedList<Integer> splitPoints, int currentIndex) {
-        if (currentIndex == str.length()) {
-            return Optional.of(splitStringAtIndices(str, splitPoints));
-        }
-
-        final StringBuilder currentWord = new StringBuilder();
-        while (currentIndex < str.length()) {
-            currentWord.append(str.charAt(currentIndex));
-
-            if (dictionary.contains(currentWord.toString())) {
-                splitPoints.addLast(currentIndex + 1);
-                Optional<String[]> branchResult =
-                        reconstructSentenceRecursively(str, dictionary, splitPoints, currentIndex + 1);
-
-                if (branchResult.isPresent()) {
-                    return branchResult;
-                } else {
-                    splitPoints.removeLast();
-                }
-            }
-
-            currentIndex++;
-        }
-
-        return Optional.empty();
+    private static boolean determineSplitPoints(String str, Stack<Integer> splitPoints, Set<String> dictionary, HashSet<Object> objects, int i) {
     }
 
-    private static String[] splitStringAtIndices(String str, LinkedList<Integer> splitPoints) {
-        final String[] arr = new String[splitPoints.size()];
-
-        int prev = 0, next;
-        for (int i = 0; splitPoints.size() > 0; i++) {
-            next = splitPoints.removeFirst();
-            arr[i] = str.substring(prev, next);
-            prev = next;
-        }
-
-        return arr;
+    private static String[] splitSentence(String str, Stack<Integer> splitPoints) {
     }
 
 }
