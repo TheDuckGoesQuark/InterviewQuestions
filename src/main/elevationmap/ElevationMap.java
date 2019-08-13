@@ -23,19 +23,34 @@ public class ElevationMap {
 
         int i = 1;
         while (i < elevationMap.length) {
+
             int indexOfBasinStart = i - 1;
 
-            while (i < elevationMap.length && elevationMap[i] < elevationMap[i - 1])
-                i++; // skip until altitude starts increasing
+            int indexOfBasinEnd = i;
+            while (i < elevationMap.length) {
+                int current = elevationMap[i];
 
-            while (i < elevationMap.length && elevationMap[i] >= elevationMap[i - 1])
-                i++; // skip until altitude stops increasing
+                if (current >= elevationMap[indexOfBasinStart]) {
+                    indexOfBasinEnd = i;
+                    break; // basin can't get bigger
+                } else {
+                    // increase basin min height if bigger wall found
+                    if (current >= elevationMap[indexOfBasinEnd])
+                        indexOfBasinEnd = i;
 
-            int height = Integer.min(elevationMap[indexOfBasinStart], elevationMap[i - 1]);
+                    i++; // keep going until we reach the end or an equal wall
+                }
+            }
+
+            int height = Integer.min(elevationMap[indexOfBasinStart], elevationMap[indexOfBasinEnd]);
             for (int j = indexOfBasinStart; j < i; j++) {
                 if (elevationMap[j] <= height)
                     units += (height - elevationMap[j]);
             }
+
+            // move i to end of last basin
+            if (i != indexOfBasinEnd) i = indexOfBasinEnd + 1;
+            i++;
         }
 
         return units;
