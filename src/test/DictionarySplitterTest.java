@@ -29,7 +29,7 @@ public class DictionarySplitterTest {
 
     @Test
     public void reconstructSentenceComplex() {
-        Set<String> words = arrToSet(new String[]{"i", "am", "reading", "read", "ding", "brotherhood", "bro", "broth", "there"});
+        Set<String> words = arrToSet(new String[]{"i", "am", "reading", "about", "read", "ding", "brotherhood", "bro", "broth", "there"});
         String input = "iamreadingaboutbrotherhood";
         String[] output = new String[]{"i", "am", "reading", "about", "brotherhood"};
 
