@@ -16,20 +16,20 @@ public class SegregateArray {
 
     public static void segregateArray(char[] arr) {
         int lastSwapIndex = 0;
+        int endSwapIndex = arr.length - 1;
 
-        // first pass, swap all Rs
-        for (int i = 1; i < arr.length; i++) {
+        int i = 0;
+        while (i <= endSwapIndex && lastSwapIndex < arr.length) {
+            // if r, swap to front
             if (arr[i] == 'R') {
                 swap(i, lastSwapIndex, arr);
                 lastSwapIndex++;
-            }
-        }
-
-        // second pass pass, start from last R
-        for (int i = lastSwapIndex; i < arr.length; i++) {
-            if (arr[i] == 'G') {
-                swap(i, lastSwapIndex, arr);
-                lastSwapIndex++;
+            } else if (arr[i] == 'B') {
+                // if B, swap to end
+                swap(i, endSwapIndex, arr);
+                endSwapIndex--;
+            } else {
+                i++;
             }
         }
     }
