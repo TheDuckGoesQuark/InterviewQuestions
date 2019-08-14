@@ -9,6 +9,7 @@ public class ElevationMapTest {
 
     @Test
     public void getVolumeContainable() {
+        assertEquals(0, ElevationMap.getVolumeContainable(new int[]{1, 0}));
         assertEquals(1, ElevationMap.getVolumeContainable(new int[]{1, 0, 1}));
         assertEquals(5, ElevationMap.getVolumeContainable(new int[]{5, 0, 5}));
         assertEquals(3, ElevationMap.getVolumeContainable(new int[]{3, 0, 5}));
