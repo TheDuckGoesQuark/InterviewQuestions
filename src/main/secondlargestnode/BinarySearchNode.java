@@ -43,4 +43,24 @@ public class BinarySearchNode<T extends Comparable<T>> {
             else right.add(value);
         }
     }
+
+    public void addAll(Iterable<T> values) {
+        for (T value : values) {
+            this.add(value);
+        }
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        if (left != null) {
+            sb.append(left.toString());
+        }
+        sb.append(value);
+        sb.append(", ");
+        if (right != null) {
+            sb.append(right.toString());
+        }
+        return sb.toString();
+    }
 }
