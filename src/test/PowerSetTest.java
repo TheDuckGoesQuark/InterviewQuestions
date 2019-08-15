@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class PowerSetTest {
 
     private static Set<Set<Integer>> jaggedArrayToSet(int[][] arr) {
-        Set<Set<Integer>> set = new HashSet<>(arr.length);
+        final Set<Set<Integer>> set = new HashSet<>(arr.length);
         for (int[] innerArr : arr) {
             set.add(arrToSet(innerArr));
         }
@@ -21,7 +21,7 @@ public class PowerSetTest {
     }
 
     private static Set<Integer> arrToSet(int[] arr) {
-        Set<Integer> set = new HashSet<>(arr.length);
+        final Set<Integer> set = new HashSet<>(arr.length);
         for (int val : arr) {
             set.add(val);
         }
