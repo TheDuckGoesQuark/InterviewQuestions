@@ -1,6 +1,6 @@
 package main.secondlargestnode;
 
-public class BinarySearchNode<T extends Comparable<T>> {
+public class BinarySearchNode<T extends Comparable<T>> implements Comparable {
 
     private T value;
     private BinarySearchNode<T> left;
@@ -62,5 +62,11 @@ public class BinarySearchNode<T extends Comparable<T>> {
             sb.append(right.toString());
         }
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        final BinarySearchNode<T> node = (BinarySearchNode<T>) o;
+        return this.value.compareTo(node.getValue());
     }
 }
