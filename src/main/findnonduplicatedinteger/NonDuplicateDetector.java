@@ -11,7 +11,19 @@ package main.findnonduplicatedinteger;
 public class NonDuplicateDetector {
 
     public static int findNonDuplicate(int[] arr) {
-        return 0;
+        int ones = 0; // count of elements that have appeared once
+        int twos = 0; // count of elements that have appeared twice
+
+        for (int val : arr) {
+            twos |= (ones & val);
+            ones ^= val;
+
+            int commonBitsMask = ~(ones & twos);
+            ones &= commonBitsMask;
+            twos &= commonBitsMask;
+        }
+
+        return ones;
     }
 
 }
