@@ -11,6 +11,7 @@ package main.arrayinversions;
  * You may assume each element in the array is distinct.
  * <p>
  * For example, a sorted list has zero inversions.
+ *           [1, 2, 3, 4, 5]
  * The array [2, 4, 1, 3, 5] has three inversions: (2, 1), (4, 1), and (4, 3).
  * The array [5, 4, 3, 2, 1] has ten inversions: every distinct pair forms an inversion.
  */
