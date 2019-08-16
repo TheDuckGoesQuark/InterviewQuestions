@@ -1,7 +1,8 @@
 package main.sumtok;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 /**
  * Given a list of integers S and a target number k,
@@ -17,8 +18,28 @@ import java.util.Set;
  */
 public class SumToK {
 
-    public static Set<Integer> getSubsettThatAddsToK(List<Integer> numbers, int target) {
-        return null;
+    public static Optional<List<Integer>> getSubsetThatAddsToK(List<Integer> numbers, int target) {
+        if (numbers.size() == 0) {
+            if (target == 0)
+                return Optional.of(Collections.emptyList());
+            else
+                return Optional.empty();
+        }
+
+        // check if current subset can produce target
+        if (numbers.stream().reduce(Integer::sum).get() == target) return Optional.of(numbers);
+
+        // remove number from list and try generate with that subset
+        for (int i = 0; i < numbers.size(); i++) {
+            int removed = numbers.remove(i);
+            Optional<List<Integer>> result = getSubsetThatAddsToK(numbers, target);
+
+            if (result.isPresent()) return result;
+            else numbers.add(i, removed);
+        }
+
+        return Optional.empty();
+
     }
 
 }
