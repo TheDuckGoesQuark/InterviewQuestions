@@ -30,12 +30,12 @@ public class GameOfLife {
     private final Map<Coordinate, Cell> liveCells;
     private final int maxTicks;
 
-    private Coordinate minCoord;
-    private Coordinate maxCoord;
+    private Coordinate minCoord = new Coordinate(0, 0);
+    private Coordinate maxCoord = new Coordinate(0, 0);
 
     private int ticks;
 
-    public GameOfLife(List<Coordinate> point, int maxTicks) {
+    public GameOfLife(Collection<Coordinate> point, int maxTicks) {
         this.maxTicks = maxTicks;
         this.liveCells = point.stream()
                 .map(Cell::new)
@@ -55,9 +55,6 @@ public class GameOfLife {
     }
 
     private void updateLimits(Coordinate coordinate) {
-        if (minCoord == null) minCoord = new Coordinate(coordinate.x, coordinate.y);
-        if (maxCoord == null) maxCoord = new Coordinate(coordinate.x, coordinate.y);
-
         if (coordinate.x < minCoord.x) minCoord.x = coordinate.x;
         if (coordinate.x > maxCoord.x) maxCoord.x = coordinate.x;
         if (coordinate.y < minCoord.y) minCoord.y = coordinate.y;
@@ -143,5 +140,9 @@ public class GameOfLife {
         }
 
         return sb.toString();
+    }
+
+    public Set<Cell> getLiveCells() {
+        return new HashSet<>(this.liveCells.values());
     }
 }
