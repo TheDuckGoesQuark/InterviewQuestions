@@ -1,4 +1,6 @@
-package main.stack;
+package main.maxstack;
+
+import java.util.Stack;
 
 /**
  * Implement a stack that has the following methods:
@@ -15,20 +17,28 @@ package main.stack;
  * <p>
  * Each method should run in constant time.
  */
-public class Stack<T extends Comparable<T>> {
+public class MaxStack<T extends Comparable<T>> {
 
-    public Stack() {
-    }
+    // two normal stacks, one with last added, one with maxes
+    private final Stack<T> normalStack = new Stack<>();
+    private final Stack<T> maxStack = new Stack<>();
 
     public void push(T val) {
+        normalStack.push(val);
 
+        if (maxStack.isEmpty() || maxStack.peek().compareTo(val) <= 0)
+            maxStack.push(val);
     }
 
     public T pop() {
-        return null;
+        final T popped = normalStack.pop();
+
+        if (maxStack.peek() == popped) maxStack.pop();
+
+        return popped;
     }
 
     public T max() {
-        return null;
+        return maxStack.peek();
     }
 }
