@@ -18,6 +18,10 @@ package main.arrayinversions;
 public class ArrayInversions {
 
     public static int countNumInversions(int[] arr) {
+        // sort O(nlog(n))
+
+        // get diff between current and sorted indices
+        // perform swap
         return 0;
     }
 
