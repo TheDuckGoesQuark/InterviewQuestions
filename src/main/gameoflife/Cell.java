@@ -1,12 +1,13 @@
 package main.gameoflife;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cell {
-    private Coordinate coords;
-    private Set<Cell> liveNeighbours = new HashSet<>();
+    private final Coordinate coords;
+    private final Set<Cell> liveNeighbours = new HashSet<>();
 
     Cell(Coordinate coords) {
         this.coords = coords;
@@ -32,10 +33,25 @@ public class Cell {
         liveNeighbours.remove(cell);
     }
 
-    public Set<Cell> getNeighbouringCells() {
-        return coords.getSurroundingCoordinates()
-                .stream()
-                .map(Cell::new)
-                .collect(Collectors.toSet());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cell cell = (Cell) o;
+        return Objects.equals(coords, cell.coords);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coords);
+    }
+
+    /**
+     * Remove self as neighbour from neigbouring cells
+     */
+    public void removeFromNeighbours() {
+        for (Cell neighbour : liveNeighbours) {
+            neighbour.removeNeighbour(this);
+        }
     }
 }
