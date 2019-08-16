@@ -42,11 +42,21 @@ public class GameOfLife {
                 .collect(Collectors.toMap(Cell::getCoords, Function.identity()));
 
         this.liveCells.keySet().forEach(this::updateLimits);
+        for (Cell cell : liveCells.values()) {
+            cell.getCoords().getSurroundingCoordinates().forEach(coordinate -> {
+                if (liveCells.containsKey(coordinate)) {
+                    Cell neighbour = liveCells.get(coordinate);
+                    cell.addNeighbour(neighbour);
+                    neighbour.addNeighbour(cell);
+                }
+            });
+
+        }
     }
 
     private void updateLimits(Coordinate coordinate) {
-        if (minCoord == null) minCoord = coordinate;
-        if (maxCoord == null) maxCoord = coordinate;
+        if (minCoord == null) minCoord = new Coordinate(coordinate.x, coordinate.y);
+        if (maxCoord == null) maxCoord = new Coordinate(coordinate.x, coordinate.y);
 
         if (coordinate.x < minCoord.x) minCoord.x = coordinate.x;
         if (coordinate.x > maxCoord.x) maxCoord.x = coordinate.x;
@@ -54,12 +64,17 @@ public class GameOfLife {
         if (coordinate.y > maxCoord.y) maxCoord.y = coordinate.y;
     }
 
+    public int getMaxTicks() {
+        return maxTicks;
+    }
 
     public int getTicks() {
         return ticks;
     }
 
-    public void incrementTicks() {
+    public void incrementTicks() throws Exception {
+        if (ticks >= maxTicks) throw new Exception("Max lifetime reached");
+
         // track liveCells to be removed on next iteration
         final Set<Cell> forDeletion = new HashSet<>();
 
@@ -104,6 +119,10 @@ public class GameOfLife {
         });
 
         ticks++;
+    }
+
+    private void addNewCell(Cell cell) {
+
     }
 
     @Override
