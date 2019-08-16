@@ -27,7 +27,9 @@ public class SumToK {
         }
 
         // check if current subset can produce target
-        if (numbers.stream().reduce(Integer::sum).get() == target) return Optional.of(numbers);
+        int currentTotal = numbers.stream().reduce(Integer::sum).get();
+        if (currentTotal == target) return Optional.of(numbers);
+        else if (currentTotal < target) return Optional.empty();
 
         // remove number from list and try generate with that subset
         for (int i = 0; i < numbers.size(); i++) {
@@ -41,5 +43,4 @@ public class SumToK {
         return Optional.empty();
 
     }
-
 }
