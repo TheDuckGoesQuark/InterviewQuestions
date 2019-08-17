@@ -115,4 +115,52 @@ public class One {
 
         return true;
     }
+
+    /**
+     * There are three types of edits that can be performed on strings: insert a character,
+     * remove a character, or replace a character. Given two strings, write a function to check if they are
+     * one edit (or zero edits) away.
+     */
+    public static boolean oneAway(String a, String b) {
+        if (a.length() == b.length()) {
+            // only replace needs to be checked if same length
+            boolean foundNonMatching = false;
+            for (int i = 0; i < a.length(); i++) {
+                if (a.charAt(i) != b.charAt(i)) {
+                    if (foundNonMatching) return false;
+                    else foundNonMatching = true;
+                }
+            }
+        } else {
+            if (a.length() > b.length()) {
+                // swap references so a is smallest string
+                String temp = a;
+                a = b;
+                b = temp;
+            }
+
+            // if difference in length is greater than one, then more than one away
+            if (b.length() - a.length() > 1) return false;
+
+            // only insert needs to be checked
+            boolean foundNonMatching = false;
+            for (int i = 0; i < a.length(); i++) {
+                if (foundNonMatching) {
+                    if (a.charAt(i - 1) != b.charAt(i)) return false;
+                } else if (a.charAt(i) != b.charAt(i)) {
+                    foundNonMatching = true;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Given an image represented by an NxN matrix, where each pixel in the image is 4
+     * bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+     */
+    public static void rotateMatrix(int[][] matrix) {
+        return;
+    }
 }
