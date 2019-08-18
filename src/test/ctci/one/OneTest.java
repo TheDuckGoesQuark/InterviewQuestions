@@ -103,4 +103,67 @@ public class OneTest {
                 {25, 20, 15, 10, 5}};
         assertEquals(expected, input);
     }
+
+    @Test
+    public void spreadZeroes() {
+        int[][] input;
+        int[][] expected;
+
+        input = new int[][]{
+                {}
+        };
+        One.zeroMatrix(input);
+        expected = new int[][]{
+                {}
+        };
+        assertEquals(expected, input);
+
+        input = new int[][]{
+                {1}
+        };
+        One.zeroMatrix(input);
+        expected = new int[][]{
+                {1}
+        };
+        assertEquals(expected, input);
+
+        input = new int[][]{
+                {0}
+        };
+        One.zeroMatrix(input);
+        expected = new int[][]{
+                {0}
+        };
+        assertEquals(expected, input);
+
+        input = new int[][]{
+                {1, 2, 3, 0},
+                {1, 2, 3, 1},
+                {1, 0, 3, 1}
+        };
+        One.zeroMatrix(input);
+        expected = new int[][]{
+                {0, 0, 0, 0},
+                {1, 0, 3, 0},
+                {0, 0, 0, 0}
+        };
+        assertEquals(expected, input);
+
+        input = new int[][]{
+                {1, 2, 3, 4},
+                {1, 0, 3, 1},
+                {1, 4, 3, 1},
+                {1, 8, 3, 1},
+                {1, 9, 3, 1}
+        };
+        One.zeroMatrix(input);
+        expected = new int[][]{
+                {1, 0, 3, 4},
+                {0, 0, 0, 0},
+                {1, 0, 3, 1},
+                {1, 0, 3, 1},
+                {1, 0, 3, 1}
+        };
+        assertEquals(expected, input);
+    }
 }
