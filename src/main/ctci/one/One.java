@@ -161,8 +161,29 @@ public class One {
      * bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
      */
     public static void rotateMatrix(int[][] matrix) {
-        // TODO
-        return;
+        int n = matrix.length;
+
+        // for each layer of matrix that needs rotating
+        for (int layer = 0; layer < (n / 2); layer++) {
+            // for each element in first row of layer
+            int rightMostIndex = n - layer - 1;
+            for (int j = layer; j < rightMostIndex; j++) {
+                // store element in top left of layer
+                int temp = matrix[layer][j];
+
+                // top left = bottom left
+                matrix[layer][j] = matrix[n - j - 1][layer];
+
+                // bottom left = bottom right
+                matrix[n - j - 1][layer] = matrix[n - layer - 1][n - j - 1];
+
+                // bottom right = top right
+                matrix[n - layer - 1][n - j - 1] = matrix[j][n - layer - 1];
+
+                // top right = temp
+                matrix[j][n - layer - 1] = temp;
+            }
+        }
     }
 }
 
