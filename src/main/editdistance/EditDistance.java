@@ -2,7 +2,6 @@ package main.editdistance;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * The edit distance between two strings refers to
