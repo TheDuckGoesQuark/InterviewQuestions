@@ -19,13 +19,17 @@ public class LongestPalindrome {
     }
 
     public static String findLongestPalindromicContiguousSubstring(String str) {
-        if (str.length() == 1) return str;
+        int len = str.length();
+        if (len == 1) return str;
 
         int[] longestIndices = new int[]{0, 0};
 
+        int nCombinations = len * (len + 1) / 2;
+        boolean[] tried = new boolean[nCombinations];
+
         // use each character as 'root' of palindrome
-        for (int i = 0; i < str.length(); i++) {
-            final Optional<int[]> result = findLongestPalindromeRecursively(str, i, i);
+        for (int i = 0; i < len; i++) {
+            final Optional<int[]> result = findLongestPalindromeRecursively(str, i, i, tried);
 
             if (result.isPresent()) {
                 longestIndices = maxDifferenceArray(result.get(), longestIndices);
@@ -35,18 +39,40 @@ public class LongestPalindrome {
         return str.substring(longestIndices[0], longestIndices[1] + 1);
     }
 
-    private static Optional<int[]> findLongestPalindromeRecursively(String str, int start, int end) {
+    private static int getIndexInCache(int start, int end, int cacheSize) {
+        // pairs combinations look like this
+        //# 0 1 2 3 ...
+        //0 T F F F
+        //1   T F F
+        //2     T F
+        //3       T
+        //...
+        // so index is
+        return 0; // TODO
+        // https://stackoverflow.com/questions/27086195/linear-index-upper-triangular-matrix
+    }
+
+    private static Optional<int[]> findLongestPalindromeRecursively(String str, int start, int end, boolean[] tried) {
         // can't go further
         if (start < 0 || end == str.length()) return Optional.empty();
+
+        // use memoized solution
+        int cacheIndex = getIndexInCache(start, end, tried.length);
+
+        // go no further if result already known
+        if (tried[cacheIndex]) return Optional.empty();
 
         // no longer palindrome, go back
         if (str.charAt(start) != str.charAt(end))
             return Optional.empty();
 
+        // add to cache
+        tried[cacheIndex] = true;
+
         // try extending palindrome
-        Optional<int[]> addLeft = findLongestPalindromeRecursively(str, start - 1, end);
-        Optional<int[]> addRight = findLongestPalindromeRecursively(str, start, end + 1);
-        Optional<int[]> addBoth = findLongestPalindromeRecursively(str, start - 1, end + 1);
+        Optional<int[]> addLeft = findLongestPalindromeRecursively(str, start - 1, end, tried);
+        Optional<int[]> addRight = findLongestPalindromeRecursively(str, start, end + 1, tried);
+        Optional<int[]> addBoth = findLongestPalindromeRecursively(str, start - 1, end + 1, tried);
 
         // return indices with biggest difference out of current, and deeper
         Set<int[]> toConsider = new HashSet<>();
