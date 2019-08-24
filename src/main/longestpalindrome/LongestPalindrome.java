@@ -60,7 +60,7 @@ public class LongestPalindrome {
         int cacheIndex = getIndexInCache(start, end, tried.length);
 
         // go no further if result already known
-        if (tried[cacheIndex]) return Optional.empty();
+        // if (tried[cacheIndex]) return Optional.empty();
 
         // no longer palindrome, go back
         if (str.charAt(start) != str.charAt(end))
