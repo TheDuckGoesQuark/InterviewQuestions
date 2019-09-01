@@ -6,12 +6,16 @@ package main.stockpriceprofitarray;
  * <p>
  * You must buy before you can sell it.
  * <p>
- * For example, given [9, 11, 8, 5 7, 10], you should return 5, since you could buy the stock at 5 dollars
+ * For example, given [9, 11, 8, 5, 7, 10], you should return 5, since you could buy the stock at 5 dollars
  * and sell it at 10 dollars.
  */
 public class StockPriceProfit {
 
     public static int mostProfitFromPrices(int[] prices) {
+        // hold min (9)
+        // hold max (11)
+        // store diff
+        // for each in arr:
         return 0;
     }
 
