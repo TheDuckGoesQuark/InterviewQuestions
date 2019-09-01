@@ -17,11 +17,7 @@ public class EditDistance {
 
     public static int getEditDistance(String a, String b) {
         Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
-        try {
-            return recursivelyGetEditDistance(a, b, a.length(), b.length(), map);
-        } finally {
-            System.out.println("");
-        }
+        return recursivelyGetEditDistance(a, b, a.length(), b.length(), map);
     }
 
     private static int recursivelyGetEditDistance(String a, String b, int lengthA, int lengthB, Map<Integer, Map<Integer, Integer>> alreadyTried) {

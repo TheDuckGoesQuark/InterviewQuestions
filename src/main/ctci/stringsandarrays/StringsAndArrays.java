@@ -1,11 +1,11 @@
-package main.ctci.one;
+package main.ctci.stringsandarrays;
 
 import java.util.Arrays;
 
 /**
  * Page 90,
  */
-public class One {
+public class StringsAndArrays {
 
     /**
      * Is Unique: Implement an algorithm to determine

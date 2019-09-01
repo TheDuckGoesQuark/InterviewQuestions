@@ -21,6 +21,8 @@ public class LongestPalindrome {
             // length one is palindrome
             return new int[]{start, end};
         }
+
+        return null;
     }
 
 }
