@@ -32,7 +32,11 @@ public class StockPriceProfitTest {
                 {new int[]{5, 4, 2, 1, 10}, 9},
                 {new int[]{5, 4, 1, 2, 10}, 9},
                 {new int[]{5, 1, 5, 2, 10}, 9},
-                {new int[]{1, 7, 5, 2, 10}, 9}
+                {new int[]{1, 7, 5, 2, 10}, 9},
+                {new int[]{9, 11, 8, 5, 7, 10, 4, 7}, 5},
+                {new int[]{9, 11, 4, 6, 12}, 8},
+                {new int[]{9, 11, 5, 6, 12}, 7},
+                {new int[]{5, 11, 6, 6, 12}, 7},
         };
 
         return Arrays.asList(data);
