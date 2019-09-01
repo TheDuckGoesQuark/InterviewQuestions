@@ -1,4 +1,4 @@
-package test.ctci.one;
+package test.ctci.stringsandarrays;
 
 import main.ctci.stringsandarrays.StringsAndArrays;
 import org.junit.Test;
