@@ -1,6 +1,6 @@
 package test.ctci.one;
 
-import main.ctci.one.One;
+import main.ctci.stringsandarrays.StringsAndArrays;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,45 +9,45 @@ public class OneTest {
 
     @Test
     public void isUnique() {
-        assertTrue(One.isUnique("abc"));
-        assertTrue(One.isUnique("adsf"));
-        assertTrue(One.isUnique("a"));
-        assertFalse(One.isUnique("aabcsdf"));
-        assertFalse(One.isUnique("aa"));
-        assertFalse(One.isUnique("abbedfs"));
-        assertFalse(One.isUnique("abbbeadfs"));
+        assertTrue(StringsAndArrays.isUnique("abc"));
+        assertTrue(StringsAndArrays.isUnique("adsf"));
+        assertTrue(StringsAndArrays.isUnique("a"));
+        assertFalse(StringsAndArrays.isUnique("aabcsdf"));
+        assertFalse(StringsAndArrays.isUnique("aa"));
+        assertFalse(StringsAndArrays.isUnique("abbedfs"));
+        assertFalse(StringsAndArrays.isUnique("abbbeadfs"));
     }
 
     @Test
     public void checkPermutation() {
-        assertTrue(One.checkPermutation("abc", "cba"));
-        assertTrue(One.checkPermutation("racecar", "carrace"));
+        assertTrue(StringsAndArrays.checkPermutation("abc", "cba"));
+        assertTrue(StringsAndArrays.checkPermutation("racecar", "carrace"));
 
-        assertFalse(One.checkPermutation("abc", "adc"));
-        assertFalse(One.checkPermutation("a", "b"));
+        assertFalse(StringsAndArrays.checkPermutation("abc", "adc"));
+        assertFalse(StringsAndArrays.checkPermutation("a", "b"));
     }
 
     @Test
     public void URLify() {
-        assertEquals("Mr%20John%20Smith", One.URLify("Mr John Smith    ".toCharArray()));
+        assertEquals("Mr%20John%20Smith", StringsAndArrays.URLify("Mr John Smith    ".toCharArray()));
     }
 
     @Test
     public void palindromePermutation() {
-        assertTrue(One.palindromePermutation("tact coa"));
+        assertTrue(StringsAndArrays.palindromePermutation("tact coa"));
     }
 
     @Test
     public void oneAway() {
-        assertTrue(One.oneAway("pale", "ple"));
-        assertTrue(One.oneAway("pales", "pale"));
-        assertTrue(One.oneAway("pale", "bale"));
-        assertTrue(One.oneAway("a", ""));
-        assertTrue(One.oneAway("", ""));
+        assertTrue(StringsAndArrays.oneAway("pale", "ple"));
+        assertTrue(StringsAndArrays.oneAway("pales", "pale"));
+        assertTrue(StringsAndArrays.oneAway("pale", "bale"));
+        assertTrue(StringsAndArrays.oneAway("a", ""));
+        assertTrue(StringsAndArrays.oneAway("", ""));
 
-        assertFalse(One.oneAway("pale", "bake"));
-        assertFalse(One.oneAway("paleo", "pal"));
-        assertFalse(One.oneAway("cat", "c"));
+        assertFalse(StringsAndArrays.oneAway("pale", "bake"));
+        assertFalse(StringsAndArrays.oneAway("paleo", "pal"));
+        assertFalse(StringsAndArrays.oneAway("cat", "c"));
     }
 
     @Test
@@ -55,12 +55,12 @@ public class OneTest {
         int[][] input, expected;
 
         input = new int[][]{{}};
-        One.rotateMatrix(input);
+        StringsAndArrays.rotateMatrix(input);
         expected = new int[][]{{}};
         assertEquals(expected, input);
 
         input = new int[][]{{1, 2}, {4, 3}};
-        One.rotateMatrix(input);
+        StringsAndArrays.rotateMatrix(input);
         expected = new int[][]{{4, 1}, {3, 2}};
         assertEquals(expected, input);
 
@@ -68,7 +68,7 @@ public class OneTest {
                 {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9}};
-        One.rotateMatrix(input);
+        StringsAndArrays.rotateMatrix(input);
         expected = new int[][]{
                 {7, 4, 1},
                 {8, 5, 2},
@@ -80,7 +80,7 @@ public class OneTest {
                 {5, 6, 7, 8},
                 {9, 10, 11, 12},
                 {13, 14, 15, 16}};
-        One.rotateMatrix(input);
+        StringsAndArrays.rotateMatrix(input);
         expected = new int[][]{
                 {13, 9, 5, 1},
                 {14, 10, 6, 2},
@@ -94,7 +94,7 @@ public class OneTest {
                 {11, 12, 13, 14, 15},
                 {16, 17, 18, 19, 20},
                 {21, 22, 23, 24, 25}};
-        One.rotateMatrix(input);
+        StringsAndArrays.rotateMatrix(input);
         expected = new int[][]{
                 {21, 16, 11, 6, 1},
                 {22, 17, 12, 7, 2},
@@ -112,7 +112,7 @@ public class OneTest {
         input = new int[][]{
                 {}
         };
-        One.zeroMatrix(input);
+        StringsAndArrays.zeroMatrix(input);
         expected = new int[][]{
                 {}
         };
@@ -121,7 +121,7 @@ public class OneTest {
         input = new int[][]{
                 {1}
         };
-        One.zeroMatrix(input);
+        StringsAndArrays.zeroMatrix(input);
         expected = new int[][]{
                 {1}
         };
@@ -130,7 +130,7 @@ public class OneTest {
         input = new int[][]{
                 {0}
         };
-        One.zeroMatrix(input);
+        StringsAndArrays.zeroMatrix(input);
         expected = new int[][]{
                 {0}
         };
@@ -141,7 +141,7 @@ public class OneTest {
                 {1, 2, 3, 1},
                 {1, 0, 3, 1}
         };
-        One.zeroMatrix(input);
+        StringsAndArrays.zeroMatrix(input);
         expected = new int[][]{
                 {0, 0, 0, 0},
                 {1, 0, 3, 0},
@@ -156,7 +156,7 @@ public class OneTest {
                 {1, 8, 3, 1},
                 {1, 9, 3, 1}
         };
-        One.zeroMatrix(input);
+        StringsAndArrays.zeroMatrix(input);
         expected = new int[][]{
                 {1, 0, 3, 4},
                 {0, 0, 0, 0},
