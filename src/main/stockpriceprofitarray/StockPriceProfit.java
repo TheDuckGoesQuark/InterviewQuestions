@@ -12,11 +12,20 @@ package main.stockpriceprofitarray;
 public class StockPriceProfit {
 
     public static int mostProfitFromPrices(int[] prices) {
-        // hold min (9)
-        // hold max (11)
-        // store diff
-        // for each in arr:
-        return 0;
+        // naive
+        // for each number, check biggest diff of all numbers ahead of it
+        int biggestDiff = 0;
+        for (int i = 0; i < prices.length; i++) {
+            int buy = prices[i];
+            for (int j = i + 1; j < prices.length; j++) {
+                int sell = prices[j];
+
+                if (sell > buy && sell - buy > biggestDiff)
+                    biggestDiff = sell - buy;
+            }
+        }
+
+        return biggestDiff;
     }
 
 }
