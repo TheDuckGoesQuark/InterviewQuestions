@@ -1,5 +1,7 @@
 package main.lrucache;
 
+import java.util.LinkedHashMap;
+
 /**
  * Implement an LRU (Least Recently Used) cache.
  * <p>
@@ -16,14 +18,33 @@ package main.lrucache;
  */
 public class LRUCache<K, V> {
 
+    final LinkedHashMap<K, V> map;
+
     private final int size;
 
     public LRUCache(int size) {
         this.size = size;
+        this.map = new LinkedHashMap<>();
     }
 
     public void set(K key, V value) {
+        if (map.containsKey(key)) {
+            updateExistingKey(key, value);
+        } else {
+            setNewKey(key, value);
+        }
+    }
 
+    private void updateExistingKey(K key, V value) {
+        // if key exists, remove old entry
+        map.remove(key);
+        map.put(key, value);
+    }
+
+    private void setNewKey(K key, V value) {
+        if (map.size() == size) {
+            map.
+        }
     }
 
     public V get(K key) {
