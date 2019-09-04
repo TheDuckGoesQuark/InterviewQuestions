@@ -36,9 +36,6 @@ public class LongestPalindrome {
             }
         }
 
-<<<<<<< HEAD
-        return null;
-=======
         return str.substring(longestIndices[0], longestIndices[1] + 1);
     }
 
@@ -84,7 +81,6 @@ public class LongestPalindrome {
         addRight.ifPresent(toConsider::add);
         addBoth.ifPresent(toConsider::add);
         return toConsider.stream().reduce(LongestPalindrome::maxDifferenceArray);
->>>>>>> 30940ced1f9b5814bcc2961d118e484091b1aced
     }
 
 }
