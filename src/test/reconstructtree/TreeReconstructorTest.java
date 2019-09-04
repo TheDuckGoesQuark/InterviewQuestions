@@ -6,7 +6,6 @@ import main.reconstructtree.TreeReconstructor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.parameterized.ParametersRunnerFactory;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,12 +16,10 @@ import static org.junit.runners.Parameterized.*;
 @RunWith(Parameterized.class)
 public class TreeReconstructorTest {
 
-    private String[] preOrder;
     private String[] inOrder;
     private TreeNode expected;
 
-    public TreeReconstructorTest(String[] preOrder, String[] inOrder, TreeNode expected) {
-        this.preOrder = preOrder;
+    public TreeReconstructorTest(String[] inOrder, TreeNode expected) {
         this.inOrder = inOrder;
         this.expected = expected;
     }
@@ -46,20 +43,8 @@ public class TreeReconstructorTest {
         c.setLeft(f);
         c.setRight(g);
 
-        final TreeNode<String> h = new TreeNode<>("h");
-        final TreeNode<String> i = new TreeNode<>("i");
-        final TreeNode<String> j = new TreeNode<>("j");
-        final TreeNode<String> k = new TreeNode<>("k");
-
-        h.setLeft(i);
-        h.setRight(j);
-
-        i.setLeft(k);
-        i.setRight(b);
-
         final Object[][] data = new Object[][]{
                 {
-                        new String[]{"d"}, // preorder
                         new String[]{"d"}, // inorder
                         d
                 },
@@ -69,7 +54,6 @@ public class TreeReconstructorTest {
                 * d   e
                 */
                 {
-                        new String[]{"b", "d", "e"}, // preorder
                         new String[]{"d", "b", "e"}, // inorder
                         b
                 },
@@ -81,23 +65,8 @@ public class TreeReconstructorTest {
                  * d  e f  g
                  */
                 {
-                        new String[]{"a", "b", "d", "e", "c", "f", "g"}, // preorder
                         new String[]{"d", "b", "e", "a", "f", "c", "g"}, // inorder
                         a
-                },
-                /*
-                 *     h
-                 *    / \
-                 *   i   j
-                 *  / \
-                 * k   b
-                 *    / \
-                 *   d   e
-                 */
-                {
-                        new String[]{"h", "i", "k", "b", "d", "e", "j"}, // preorder
-                        new String[]{"k", "i", "d", "b", "e", "h", "j"}, // inorder
-                        h
                 },
         };
 
@@ -106,6 +75,6 @@ public class TreeReconstructorTest {
 
     @Test
     public void reconstructTree() {
-        assertEquals(expected, TreeReconstructor.reconstructTree(preOrder, inOrder));
+        assertEquals(expected, TreeReconstructor.reconstructTree(inOrder));
     }
 }
