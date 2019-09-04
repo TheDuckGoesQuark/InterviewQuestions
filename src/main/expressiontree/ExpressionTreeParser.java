@@ -23,7 +23,28 @@ public class ExpressionTreeParser {
     public static final String DIVIDE = "/";
 
     public int parse(ExpressionTree node) {
-        return 0;
+        if (node.isLeaf())
+            return node.getAsInteger();
+
+        int left = this.parse(node.getLeft());
+        int right = this.parse(node.getRight());
+
+        return applyOperation(node, left, right);
+    }
+
+    private int applyOperation(ExpressionTree node, int left, int right) {
+        switch (node.getValue()) {
+            case PLUS:
+                return left + right;
+            case MINUS:
+                return left - right;
+            case MULTIPLY:
+                return left * right;
+            case DIVIDE:
+                return left / right;
+        }
+
+        throw new IllegalArgumentException("Operation is not valid: " + node.getValue());
     }
 
 }
