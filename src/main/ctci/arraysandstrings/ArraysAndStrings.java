@@ -1,11 +1,11 @@
-package main.ctci.stringsandarrays;
+package main.ctci.arraysandstrings;
 
 import java.util.Arrays;
 
 /**
  * Page 90,
  */
-public class StringsAndArrays {
+public class ArraysAndStrings {
 
     /**
      * Is Unique: Implement an algorithm to determine
@@ -184,14 +184,6 @@ public class StringsAndArrays {
                 matrix[j][n - layer - 1] = temp;
             }
         }
-    }
-
-    /**
-     * Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
-     * column are set to 0.
-     */
-    public static void zeroMatrix(int[][] matrix) {
-
     }
 
 
