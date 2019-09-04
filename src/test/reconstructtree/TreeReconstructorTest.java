@@ -46,6 +46,17 @@ public class TreeReconstructorTest {
         c.setLeft(f);
         c.setRight(g);
 
+        final TreeNode<String> h = new TreeNode<>("h");
+        final TreeNode<String> i = new TreeNode<>("i");
+        final TreeNode<String> j = new TreeNode<>("j");
+        final TreeNode<String> k = new TreeNode<>("k");
+
+        h.setLeft(i);
+        h.setRight(j);
+
+        i.setLeft(k);
+        i.setRight(b);
+
         final Object[][] data = new Object[][]{
                 {
                         new String[]{"d"}, // preorder
@@ -73,6 +84,20 @@ public class TreeReconstructorTest {
                         new String[]{"a", "b", "d", "e", "c", "f", "g"}, // preorder
                         new String[]{"d", "b", "e", "a", "f", "c", "g"}, // inorder
                         a
+                },
+                /*
+                 *     h
+                 *    / \
+                 *   i   j
+                 *  / \
+                 * k   b
+                 *    / \
+                 *   d   e
+                 */
+                {
+                        new String[]{"h", "i", "k", "b", "d", "e", "j"}, // preorder
+                        new String[]{"k", "i", "d", "b", "e", "h", "j"}, // inorder
+                        h
                 },
         };
 
