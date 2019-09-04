@@ -2,12 +2,16 @@ package main.expressiontree;
 
 public class ExpressionTree {
 
-    final String value;
-    ExpressionTree left;
-    ExpressionTree right;
+    private final String value;
+    private ExpressionTree left;
+    private ExpressionTree right;
 
     public ExpressionTree(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     public ExpressionTree getLeft() {
