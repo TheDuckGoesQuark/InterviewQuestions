@@ -39,12 +39,6 @@ public class TreeReconstructor {
         else if (length == 1)
             return new TreeNode<>(inOrder[startIndex]);
 
-        // 0
-        // 0, 1
-        // 0, 1, 2
-        // 0, 1, 2, 3
-        // 0, 1, 2, 3, 4
-
         int middleIndex = startIndex + (length / 2);
         final TreeNode<String> root = new TreeNode<>(inOrder[startIndex + length / 2]);
 
