@@ -2,14 +2,14 @@ package main.reconstructtree;
 
 import java.util.Objects;
 
-public class TreeNode {
+public class TreeNode<T> {
 
-    private Object value;
+    private T value;
 
     private TreeNode left;
     private TreeNode right;
 
-    public TreeNode(Object value) {
+    public TreeNode(T value) {
         this.value = value;
     }
 
@@ -44,4 +44,8 @@ public class TreeNode {
         return Objects.hash(value, left, right);
     }
 
+    @Override
+    public String toString() {
+        return value == null ? "null" : value.toString();
+    }
 }

@@ -29,13 +29,13 @@ public class TreeReconstructorTest {
 
     @Parameters
     public static Collection<Object[]> data() {
-        final TreeNode a = new TreeNode("a");
-        final TreeNode b = new TreeNode("b");
-        final TreeNode c = new TreeNode("c");
-        final TreeNode d = new TreeNode("d");
-        final TreeNode e = new TreeNode("e");
-        final TreeNode f = new TreeNode("f");
-        final TreeNode g = new TreeNode("g");
+        final TreeNode<String> a = new TreeNode<>("a");
+        final TreeNode<String> b = new TreeNode<>("b");
+        final TreeNode<String> c = new TreeNode<>("c");
+        final TreeNode<String> d = new TreeNode<>("d");
+        final TreeNode<String> e = new TreeNode<>("e");
+        final TreeNode<String> f = new TreeNode<>("f");
+        final TreeNode<String> g = new TreeNode<>("g");
 
         a.setLeft(b);
         a.setRight(c);
@@ -60,7 +60,7 @@ public class TreeReconstructorTest {
                 {
                         new String[]{"b", "d", "e"}, // preorder
                         new String[]{"d", "b", "e"}, // inorder
-                        a
+                        b
                 },
                 /*
                  *     a
