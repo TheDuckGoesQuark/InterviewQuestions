@@ -28,26 +28,31 @@ public class LRUCache<K, V> {
     }
 
     public void set(K key, V value) {
-        if (map.containsKey(key)) {
-            updateExistingKey(key, value);
-        } else {
-            setNewKey(key, value);
-        }
+        if (map.size() == size)
+            removeLRU();
+
+        setOrOverwriteKey(key, value);
     }
 
-    private void updateExistingKey(K key, V value) {
+    private void setOrOverwriteKey(K key, V value) {
         // if key exists, remove old entry
         map.remove(key);
         map.put(key, value);
     }
 
-    private void setNewKey(K key, V value) {
-        if (map.size() == size) {
-            map.
-        }
+    private void removeLRU() {
+        K lruKey = map.keySet().iterator().next();
+        map.remove(lruKey);
     }
 
     public V get(K key) {
-        return null;
+        final V value = map.getOrDefault(key, null);
+
+        if (value != null) {
+            map.remove(key);
+            map.put(key, value);
+        }
+
+        return value;
     }
 }
