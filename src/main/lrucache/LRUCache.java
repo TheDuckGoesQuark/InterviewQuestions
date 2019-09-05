@@ -18,7 +18,7 @@ import java.util.LinkedHashMap;
  */
 public class LRUCache<K, V> {
 
-    final LinkedHashMap<K, V> map;
+    private final LinkedHashMap<K, V> map;
 
     private final int size;
 
