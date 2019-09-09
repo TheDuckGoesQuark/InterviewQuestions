@@ -1,12 +1,12 @@
 package test.pathcount;
 
-import com.sun.tools.javac.util.List;
 import main.pathcount.PathCount;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.junit.runners.Parameterized.*;
@@ -27,11 +27,16 @@ public class PathCountTest {
     @Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
-                {2, 2, 5} ,
-                {5, 5, 70} ,
+                {1, 1, 1},
+                {2, 1, 1},
+                {3, 1, 1},
+                {1, 2, 1},
+                {1, 3, 1},
+                {2, 2, 2},
+                {5, 5, 70},
         };
 
-        return List.from(data);
+        return List.of(data);
     }
 
     @Test
