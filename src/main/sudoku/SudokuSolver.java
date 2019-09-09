@@ -12,6 +12,8 @@ import java.util.Set;
  * must contain all of the digits from 1 to 9.
  * <p>
  * Implement an efficient sudoku solver.
+ *
+ * // TODO ...
  */
 public class SudokuSolver {
 
@@ -43,7 +45,7 @@ public class SudokuSolver {
      * @param puzzle puzzle containing initial values
      */
     private static void initialiseKnownNumbers(List<Set<Integer>> rows, List<Set<Integer>> cols, List<Set<Integer>> boxes, int[][] puzzle) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 9; i++) {
             rows.add(new HashSet<>());
             cols.add(new HashSet<>());
             boxes.add(new HashSet<>());
@@ -70,6 +72,8 @@ public class SudokuSolver {
      * @return true if set added, false if value already existed in any of the three sets
      */
     private static boolean addValueToSets(List<Set<Integer>> rows, List<Set<Integer>> cols, List<Set<Integer>> boxes, int value, int rowIndex, int colIndex, int boxIndex) {
+        if (value == UNSET) return true;
+
         final Set<Integer> rowSet = rows.get(rowIndex);
         final Set<Integer> colSet = cols.get(colIndex);
         final Set<Integer> boxSet = boxes.get(boxIndex);
@@ -84,32 +88,6 @@ public class SudokuSolver {
         return true;
     }
 
-    /**
-     * Removes the value from the sets corresponding to the given indices
-     *
-     * @param rows     set for each row
-     * @param cols     set for each column
-     * @param boxes    set for each box
-     * @param value    value to remove
-     * @param rowIndex index of row in puzzle
-     * @param colIndex index of column in puzzle
-     * @param boxIndex index of box in puzzle
-     * @return true if set removed , false if value did not exist in any of the sets
-     */
-    private static boolean removeValueFromSets(List<Set<Integer>> rows, List<Set<Integer>> cols, List<Set<Integer>> boxes, int value, int rowIndex, int colIndex, int boxIndex) {
-        final Set<Integer> rowSet = rows.get(rowIndex);
-        final Set<Integer> colSet = cols.get(colIndex);
-        final Set<Integer> boxSet = boxes.get(boxIndex);
-
-        if (!rowSet.contains(value) || !colSet.contains(value) || !boxSet.contains(value))
-            return false;
-
-        rowSet.remove(value);
-        colSet.remove(value);
-        boxSet.remove(value);
-
-        return true;
-    }
 
     /**
      * Solves the puzzle using recursive backtracking, by iterating over each cell in the puzzle,
