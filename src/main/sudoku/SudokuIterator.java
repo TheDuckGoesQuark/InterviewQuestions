@@ -14,7 +14,7 @@ public class SudokuIterator implements ListIterator<Integer> {
 
     public SudokuIterator(int[][] puzzle) {
         this.puzzle = puzzle;
-        this.index = 0;
+        this.index = -1;
     }
 
     public int getColIndex() {
@@ -33,7 +33,7 @@ public class SudokuIterator implements ListIterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        return index < (puzzle.length * puzzle.length);
+        return (index + 1) < (puzzle.length * puzzle.length);
     }
 
     @Override
