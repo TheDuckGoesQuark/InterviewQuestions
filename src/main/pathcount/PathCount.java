@@ -1,5 +1,8 @@
 package main.pathcount;
 
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * There is an N by M matrix of zeroes.
  * <p>
@@ -21,7 +24,31 @@ package main.pathcount;
 public class PathCount {
 
     public static int countPossiblePaths(int n, int m) {
-        return 0; // TODO
+        if (n == 0 || m == 0) return 0;
+
+        int[][] matrix = new int[n][m];
+
+        return breadthFirstReversePathCount(matrix);
     }
 
+    private static int breadthFirstReversePathCount(int[][] matrix) {
+        final Queue<Point> toExplore = new LinkedBlockingQueue<>();
+
+        // initialise queue with bottom right corner point
+        toExplore.add(new Point(matrix.length - 1, matrix[0].length - 1));
+
+        while (!toExplore.isEmpty()) {
+            Point current = toExplore.remove();
+            int x = current.x;
+            int y = current.y;
+
+            // increment the number of times this point was visited in matrix
+            matrix[x][y]++;
+
+            if (x > 0) toExplore.add(new Point(x - 1, y));
+            if (y > 0) toExplore.add(new Point(x, y - 1));
+        }
+
+        return matrix[0][0];
+    }
 }
