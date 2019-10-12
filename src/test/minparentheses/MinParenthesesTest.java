@@ -1,5 +1,6 @@
 package test.minparentheses;
 
+import main.minparentheses.MinParentheses;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,6 +8,7 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.runners.Parameterized.*;
 
 @RunWith(Parameterized.class)
@@ -31,6 +33,6 @@ class MinParenthesesTest {
 
     @Test
     public void getMinNeedingRemoved() {
-
+        assertEquals(expected, MinParentheses.getMinNeedingRemoved(input));
     }
 }
