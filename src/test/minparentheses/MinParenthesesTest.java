@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.runners.Parameterized.*;
 
 @RunWith(Parameterized.class)
-class MinParenthesesTest {
+public class MinParenthesesTest {
 
     private String input;
     private int expected;
@@ -22,6 +22,11 @@ class MinParenthesesTest {
         final Object[][] data = {
                 {"()())()", 1},
                 {")(", 2},
+                {"()(", 1},
+                {"())", 1},
+                {"(())", 0},
+                {"(())(())", 0},
+                {")()(()()(", 3},
         };
         return Arrays.asList(data);
     }
