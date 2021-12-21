@@ -1,7 +1,10 @@
 package interview;
 
+import interview.linkedlistkthelement.KthElement;
+import interview.linkedlistkthelement.Node;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
