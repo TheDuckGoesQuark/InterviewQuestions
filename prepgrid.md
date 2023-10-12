@@ -26,4 +26,3 @@ In my personal life, this might show as making sure their taxi is booked to get 
 In my career, this manifests as pairing and unblocking my colleagues before carrying on with my own work. 
 I'm mostly motivated by my own hatred of that feeling of being blocked and stuck, and the knowledge that often a second pair of eyes or a new perspective can solve a problem in half the time.
 
-
