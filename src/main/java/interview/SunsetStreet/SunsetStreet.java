@@ -19,6 +19,8 @@ import java.util.Stack;
  */
 public class SunsetStreet {
     public static int countBuildingsWithViewOfSunset(int[] heights) {
+        // the forward pass requirement makes this harder
+        // as going backwards is easy, just track the current max height
         var heightStack = new Stack<Integer>();
         for (int height : heights) {
             if (heightStack.isEmpty()) {
