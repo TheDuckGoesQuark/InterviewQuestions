@@ -1,9 +1,6 @@
 package interview.BrickWall;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A wall consists of several rows of bricks of various integer lengths and uniform height.
@@ -28,37 +25,28 @@ public class BrickWall {
     public static int getMinCutPosition(int[][] wall) {
         if (wall.length == 0) return 0;
 
-        // get length of wall
-        // O(n[1])
-        var lengthOfWall = Arrays.stream(wall[0]).sum();
-
         // map each row to a set of indices where cuts already exist (i.e. between bricks)
         // O(n)
-        var existingCuts = new ArrayList<Set<Integer>>(wall.length);
+        var cutIndexCount = new HashMap<Integer, Integer>();
+
         for (int[] row : wall) {
-            var cutSet = new HashSet<Integer>(row.length);
             var index = 0;
-            for (int brickLength : row) {
+            for (int i = 0; i < row.length - 1; i++) {
+                int brickLength = row[i];
                 index += brickLength;
-                cutSet.add(index);
+                cutIndexCount.compute(index, (key, val) -> val == null ? 1 : val + 1);
             }
-            existingCuts.add(cutSet);
         }
 
-        int minCuts = Integer.MAX_VALUE;
-        int minCutIndex = -1;
-        for (int i = 1; i < lengthOfWall; i++) {
-            var numCuts = getTotalCutsStartingAtIndex(i, existingCuts);
-            if (numCuts < minCuts) {
-                minCuts = numCuts;
-                minCutIndex = i;
+        var minCutIndex = -1;
+        var maxCount = Integer.MIN_VALUE;
+        for (var entry : cutIndexCount.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                minCutIndex = entry.getKey();
             }
         }
 
         return minCutIndex;
-    }
-
-    private static int getTotalCutsStartingAtIndex(int i, ArrayList<Set<Integer>> existingCuts) {
-        return (int) existingCuts.stream().filter(existingCut -> !existingCut.contains(i)).count();
     }
 }
