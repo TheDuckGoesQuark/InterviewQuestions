@@ -12,6 +12,10 @@ public class Node {
         this.right = right;
     }
 
+    public Node(int value) {
+        this.value = value;
+    }
+
     public int getValue() {
         return value;
     }
