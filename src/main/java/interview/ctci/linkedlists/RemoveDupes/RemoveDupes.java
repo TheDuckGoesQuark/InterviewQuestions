@@ -29,8 +29,32 @@ public class RemoveDupes {
     }
 
     public static LinkedListNode removeDupesWithoutBuffer(LinkedListNode inputHead) {
+        // 1 -> 2 -> 3 -> 1 -> -> 4
+        // first pass: sort  O(n *  logn)
+        // second pass: remove duplicates immediately ahead O(n)
+        // but merge sort is a pita to write for linked lists and we'd need different tests to handle the sorted output
+        // so we're gonna do it the two pointer way O(n^2)
+
+        var currentPointer = inputHead;
+
+        while (currentPointer != null) {
+            var value = currentPointer.value;
+
+            var searchPointer = currentPointer;
+
+            while (searchPointer.next != null) {
+                var next = searchPointer.next;
+                if (next.value == value) {
+                    searchPointer.next = next.next;
+                } else {
+                    searchPointer = next;
+                }
+            }
+
+            currentPointer = currentPointer.next;
+        }
+
         return inputHead;
     }
-    // with buffer: hashset of values, remove values that appear twice
-    // without buffer:
+
 }
