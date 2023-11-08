@@ -92,4 +92,10 @@ public class ReturnKthToLastTest {
         var linkedList = LinkedListNode.fromArray(input);
         assertEquals(String.format("K:%d %s", k, Arrays.toString(input)), expectedResult, ReturnKthToLast.returnKthToLast(linkedList, k));
     }
+
+    @Test
+    public void testRecursive() {
+        var linkedList = LinkedListNode.fromArray(input);
+        assertEquals(String.format("K:%d %s", k, Arrays.toString(input)), expectedResult, ReturnKthToLast.returnKthToLastRecursively(linkedList, k));
+    }
 }

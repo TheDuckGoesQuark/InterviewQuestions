@@ -30,4 +30,38 @@ public class ReturnKthToLast {
 
         return kth.value;
     }
+
+    public static int returnKthToLastRecursively(LinkedListNode linkedList, int k) {
+        // recursively iterate through list to end
+        // return 1 + call(nextElement) until 1 = k
+        // return k'th element
+        return recursivelyFindKthElement(linkedList, k)[1];
+    }
+
+    // returns [k from end, value of k from end]
+    private static int[] recursivelyFindKthElement(LinkedListNode linkedList, int k) {
+        // hit end
+        if (linkedList.next == null) {
+            if (k == 0) {
+                return new int[]{0, linkedList.value};
+            } else {
+                return new int[]{0, -1};
+            }
+        }
+
+        var kFromEnd = recursivelyFindKthElement(linkedList.next, k);
+
+        // kth from end already found
+        if (kFromEnd[0] >= k) {
+            return kFromEnd;
+        }
+
+        kFromEnd[0]++;
+        if (kFromEnd[0] == k) {
+            kFromEnd[1] = linkedList.value;
+        }
+
+        return kFromEnd;
+    }
+
 }
