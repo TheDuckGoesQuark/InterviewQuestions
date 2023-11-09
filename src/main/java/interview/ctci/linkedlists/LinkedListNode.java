@@ -1,6 +1,7 @@
 package interview.ctci.linkedlists;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,5 +45,10 @@ public class LinkedListNode {
         }
 
         return head;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(this.toArray());
     }
 }
