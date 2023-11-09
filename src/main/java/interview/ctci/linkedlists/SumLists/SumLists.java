@@ -45,7 +45,43 @@ public class SumLists {
         return output;
     }
 
+    private static class RecursiveSumListReturnTuple {
+        public LinkedListNode nextDigit;
+        public int carry;
+
+        public RecursiveSumListReturnTuple(LinkedListNode nextDigit, int carry) {
+            this.nextDigit = nextDigit;
+            this.carry = carry;
+        }
+    }
+
+    private static RecursiveSumListReturnTuple recursivelySumList(LinkedListNode listA, LinkedListNode listB) {
+        if (listA == null && listB == null) return new RecursiveSumListReturnTuple(null, 0);
+
+        // recurse to end of list, being summing backwards
+        var nextA = listA != null ? listA.next : null;
+        var nextB = listB != null ? listB.next : null;
+        var restOfSum = recursivelySumList(nextA, nextB);
+        var a = listA != null ? listA.value : 0;
+        var b = listB != null ? listB.value : 0;
+        var carry = restOfSum.carry;
+        var sum = a + b + carry;
+        carry = sum / 10;
+        var cValue = sum % 10;
+        var listC = new LinkedListNode(cValue);
+        listC.next = restOfSum.nextDigit;
+        return new RecursiveSumListReturnTuple(listC, carry);
+    }
+
     public static LinkedListNode sumLists(LinkedListNode listA, LinkedListNode listB) {
-        return listA;
+        var sum = recursivelySumList(listA, listB);
+
+        if (sum.carry > 0) {
+            var newHead = new LinkedListNode(sum.carry);
+            newHead.next = sum.nextDigit;
+            return newHead;
+        } else {
+            return sum.nextDigit;
+        }
     }
 }
