@@ -47,6 +47,14 @@ public class LinkedListNode {
         return head;
     }
 
+    public void append(LinkedListNode tail) {
+        var current = this;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = tail;
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(this.toArray());
